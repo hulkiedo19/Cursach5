@@ -19,15 +19,30 @@ namespace Cursach5.ViewModels
         private List<Subject> _subjects;
         private object _selectedSubject;
 
+        private string _descriptionProcess;
+        private string _subjectId;
+        private object _startDate;
+        private object _endDate;
+
+        private List<Process> _processes;
+        private object _selectedProcess;
+
         public ICommand AddSubject => new AddSubjectCommand(this);
         public ICommand DeleteSubject => new DeleteSubjectCommand(this);
         public ICommand UpdateSubjects => new UpdateSubjectsCommand(this);
+
+        public ICommand AddProcess => new AddProcessCommand(this);
+        public ICommand DeleteProcess => new DeleteProcessCommand(this);
+        public ICommand MarkProcess => new MarkProcessCommand(this);
 
         public MainWindowViewModel()
         {
             using(var dbContext = new DatabaseEntities())
             {
                 _subjects = dbContext.Subjects
+                    .ToList();
+
+                _processes = dbContext.Processes
                     .ToList();
             }
         }
@@ -66,6 +81,44 @@ namespace Cursach5.ViewModels
         {
             get => _quantity;
             set => Set(ref _quantity, value, nameof(Quantity));
+        }
+
+
+
+        public List<Process> Processes
+        {
+            get => _processes;
+            set => Set(ref _processes, value, nameof(Processes));
+        }
+
+        public object SelectedProcess
+        {
+            get => _selectedProcess;
+            set => Set(ref _selectedProcess, value, nameof(SelectedProcess));
+        }
+
+        public string DescriptionProcess
+        {
+            get => _descriptionProcess;
+            set => Set(ref _descriptionProcess, value, nameof(DescriptionProcess));
+        }
+
+        public string SubjectId
+        {
+            get => _subjectId;
+            set => Set(ref _subjectId, value, nameof(SubjectId));
+        }
+
+        public object StartDate
+        {
+            get => _startDate;
+            set => Set(ref _startDate, value, nameof(StartDate));
+        }
+
+        public object EndDate
+        {
+            get => _endDate;
+            set => Set(ref _endDate, value, nameof(EndDate));
         }
     }
 }

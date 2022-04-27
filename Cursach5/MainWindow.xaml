@@ -18,7 +18,7 @@
         <TabControl>
 
             <TabItem
-                Header="Overview">
+                Header="Subjects">
 
                 <Grid>
 
@@ -139,8 +139,134 @@
             </TabItem>
 
             <TabItem
-                Header="Editing">
+                Header="Processes">
 
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.15*"/>
+                        <RowDefinition Height="0.10*"/>
+                        <RowDefinition Height="0.75*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel
+                        Grid.Row="0"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Left"
+                        Margin="0, 5, 0, 5">
+
+                        <Button 
+                            Width="100"
+                            Margin="5, 0, 5, 0"
+                            Content="Mark complete"
+                            Command="{Binding MarkProcess, UpdateSourceTrigger=PropertyChanged}"
+                            CommandParameter="{Binding ElementName=ProcessGrid, Path=Items}"/>
+                        
+                        <Button 
+                            Width="100"
+                            Margin="5, 0, 5, 0"
+                            Content="Delete process"
+                            Command="{Binding DeleteProcess, UpdateSourceTrigger=PropertyChanged}"
+                            CommandParameter="{Binding ElementName=ProcessGrid, Path=Items}"/>
+
+                        <Button 
+                            Width="100"
+                            Margin="5, 0, 5, 0"
+                            Content="Exit"
+                            Click="Exit_Click"/>
+
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Row="1"
+                        Height="25"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal"
+                        Margin="4">
+
+                        <TextBlock 
+                            VerticalAlignment="Center"
+                            Text="Description: "
+                            Margin="4, 0, 4, 0"/>
+                        <TextBox 
+                            Width="100"
+                            Text="{Binding DescriptionProcess, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <TextBlock 
+                            VerticalAlignment="Center"
+                            Text="Subject Id: "
+                            Margin="4, 0, 4, 0"/>
+                        <TextBox 
+                            Width="100"
+                            Text="{Binding SubjectId, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <TextBlock 
+                            VerticalAlignment="Center"
+                            Text="Start Date: "
+                            Margin="4, 0, 4, 0"/>
+                        <DatePicker 
+                            Width="100"
+                            SelectedDate="{Binding StartDate}"/>
+
+                        <TextBlock 
+                            VerticalAlignment="Center"
+                            Text="End Date: "
+                            Margin="4, 0, 4, 0"/>
+                        <DatePicker 
+                            Width="100"
+                            SelectedDate="{Binding EndDate}"/>
+
+                        <Button 
+                            Width="100"
+                            Margin="4, 0, 4, 0"
+                            Content="Add Process"
+                            Command="{Binding AddProcess, UpdateSourceTrigger=PropertyChanged}"
+                            CommandParameter="{Binding ElementName=ProcessGrid, Path=Items}"/>
+
+                    </StackPanel>
+
+                    <DataGrid
+                        Grid.Row="2"
+                        x:Name="ProcessGrid"
+                        AutoGenerateColumns="False"
+                        ScrollViewer.CanContentScroll="True"
+                        ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                        ScrollViewer.VerticalScrollBarVisibility="Visible"
+                        ItemsSource="{Binding Processes, UpdateSourceTrigger=PropertyChanged}"
+                            SelectedItem="{Binding SelectedProcess, TargetNullValue={x:Static CollectionView.NewItemPlaceholder}}">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn 
+                                    Header="Id"
+                                    Width="*"
+                                    Binding="{Binding Path=Id}"/>
+                            <DataGridTextColumn 
+                                    Header="Description"
+                                    Width="*"
+                                    Binding="{Binding Path=Description}"/>
+                            <DataGridTextColumn 
+                                    Header="Subject"
+                                    Width="*"
+                                    Binding="{Binding Path=UsedSubject}"/>
+                            <DataGridTextColumn 
+                                    Header="Start Date"
+                                    Width="*"
+                                    Binding="{Binding Path=StartDate}"/>
+                            <DataGridTextColumn 
+                                    Header="End Date"
+                                    Width="*"
+                                    Binding="{Binding Path=EndDate}"/>
+                            <DataGridTextColumn 
+                                    Header="Is completed"
+                                    Width="*"
+                                    Binding="{Binding Path=IsCompleted}"/>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+                    
+                </Grid>
+                
             </TabItem>
 
         </TabControl>

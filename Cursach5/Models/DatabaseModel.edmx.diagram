@@ -4,8 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="38f889bfd47a4773aa9b769a6d8e5924" Name="Diagram1">
-        <EntityTypeShape EntityType="DatabaseModel.Subject" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="85f62318fb0b4090bc29b8611acc9908" Name="Diagram1">
+        <EntityTypeShape EntityType="DatabaseModel.Process" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Subject" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="DatabaseModel.FK__Processes__UsedS__36B12243" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

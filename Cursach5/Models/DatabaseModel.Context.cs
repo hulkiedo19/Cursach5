@@ -25,6 +25,7 @@ namespace Cursach5.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Process> Processes { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
     }
 }

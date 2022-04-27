@@ -30,40 +30,5 @@ namespace Cursach5
         {
             this.Close();
         }
-
-        //private void SubjectGrid_AddingNewItem(object sender, AddingNewItemEventArgs e)
-        //{
-        //    if(e.NewItem == null)
-        //    {
-        //        return;
-        //    } else
-        //    {
-        //        MessageBox.Show(e.ToString(), "adding new item");
-        //    }
-        //}
-
-        //private void SubjectGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
-        //{
-        //    if(e.EditAction == DataGridEditAction.Cancel)
-        //    {
-        //        return;
-        //    }
-            
-        //    if(e.EditAction == DataGridEditAction.Commit)
-        //    {
-        //        //var elem = e.Row.Item;
-
-        //        //using(var DbContext = new DatabaseEntities())
-        //        //{
-        //        //    DbContext.Subjects.Add(elem as Subject);
-        //        //    DbContext.SaveChanges();
-        //        //}
-        //    }
-        //}
-
-        //private void Update_Click(object sender, RoutedEventArgs e)
-        //{
-        //    SubjectGrid.Items.Refresh();
-        //}
     }
 }
