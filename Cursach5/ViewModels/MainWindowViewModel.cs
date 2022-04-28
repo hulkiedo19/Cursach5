@@ -11,10 +11,9 @@ namespace Cursach5.ViewModels
 {
     public class MainWindowViewModel : ViewModel
     {
-        private string _name;
-        private string _description;
+        private string _subjectTypeId;
         private string _invNumber;
-        private string _quantity;
+        private string _amountSubjects;
 
         private List<Subject> _subjects;
         private object _selectedSubject;
@@ -23,6 +22,8 @@ namespace Cursach5.ViewModels
         private string _subjectId;
         private object _startDate;
         private object _endDate;
+        private string _usedEmployeeNumber;
+        private string _department;
 
         private List<Process> _processes;
         private object _selectedProcess;
@@ -35,17 +36,20 @@ namespace Cursach5.ViewModels
         public ICommand DeleteProcess => new DeleteProcessCommand(this);
         public ICommand MarkProcess => new MarkProcessCommand(this);
 
+
         public MainWindowViewModel()
         {
             using(var dbContext = new DatabaseEntities())
             {
                 _subjects = dbContext.Subjects
+                    .Include(nameof(Subject.SubjectType1))
                     .ToList();
 
                 _processes = dbContext.Processes
                     .ToList();
             }
         }
+
 
         public List<Subject> Subjects
         {
@@ -59,16 +63,10 @@ namespace Cursach5.ViewModels
             set => Set(ref _selectedSubject, value, nameof(SelectedSubject));
         }
 
-        public string Name
+        public string SubjectTypeId
         {
-            get => _name;
-            set => Set(ref _name, value, nameof(Name));
-        }
-
-        public string Description
-        {
-            get => _description;
-            set => Set(ref _description, value, nameof(Description));
+            get => _subjectTypeId;
+            set => Set(ref _subjectTypeId, value, nameof(SubjectTypeId));
         }
 
         public string InvNumber
@@ -77,12 +75,11 @@ namespace Cursach5.ViewModels
             set => Set(ref _invNumber, value, nameof(InvNumber));
         }
 
-        public string Quantity
+        public string AmountSubjects
         {
-            get => _quantity;
-            set => Set(ref _quantity, value, nameof(Quantity));
+            get => _amountSubjects;
+            set => Set(ref _amountSubjects, value, nameof(AmountSubjects));
         }
-
 
 
         public List<Process> Processes
@@ -119,6 +116,18 @@ namespace Cursach5.ViewModels
         {
             get => _endDate;
             set => Set(ref _endDate, value, nameof(EndDate));
+        }
+
+        public string UsedEmployeeNumber
+        {
+            get => _usedEmployeeNumber;
+            set => Set(ref _usedEmployeeNumber, value, nameof(UsedEmployeeNumber));
+        }
+
+        public string Department
+        {
+            get => _department;
+            set => Set(ref _department, value, nameof(Department));
         }
     }
 }

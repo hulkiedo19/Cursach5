@@ -12,17 +12,19 @@ namespace Cursach5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Process
+    public partial class SubjectType
     {
-        public int Id { get; set; }
-        public string Description { get; set; }
-        public Nullable<int> UsedSubject { get; set; }
-        public System.DateTime StartDate { get; set; }
-        public System.DateTime EndDate { get; set; }
-        public int UsedEmployeeNumber { get; set; }
-        public string Department { get; set; }
-        public string IsCompleted { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SubjectType()
+        {
+            this.Subjects = new HashSet<Subject>();
+        }
     
-        public virtual Subject Subject { get; set; }
+        public int SubjectTypeId { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Subject> Subjects { get; set; }
     }
 }

@@ -21,12 +21,12 @@ namespace Cursach5.Models
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public Nullable<int> SubjectType { get; set; }
         public string InventoryNumber { get; set; }
-        public int Quantity { get; set; }
+        public int AmountSubjects { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Process> Processes { get; set; }
+        public virtual SubjectType SubjectType1 { get; set; }
     }
 }

@@ -8,7 +8,8 @@
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="450" 
-        Width="800">
+        Width="850"
+        ResizeMode="NoResize">
 
     <Window.DataContext>
         <vm:MainWindowViewModel />
@@ -24,7 +25,7 @@
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.15*"/>
-                        <RowDefinition Height="0.07*"/>
+                        <RowDefinition Height="0.10*"/>
                         <RowDefinition Height="0.75*"/>
                     </Grid.RowDefinitions>
 
@@ -60,23 +61,16 @@
                         Grid.Row="1"
                         Height="20"
                         VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
+                        HorizontalAlignment="Left"
                         Orientation="Horizontal"
                         Margin="4">
 
                         <TextBlock 
-                            Text="Name: "
+                            Text="Type Id: "
                             Margin="4, 0, 4, 0"/>
                         <TextBox 
                             Width="100"
-                            Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
-
-                        <TextBlock 
-                            Text="Description: "
-                            Margin="4, 0, 4, 0"/>
-                        <TextBox 
-                            Width="100"
-                            Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"/>
+                            Text="{Binding SubjectTypeId, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <TextBlock 
                             Text="Inv Number: "
@@ -90,7 +84,7 @@
                             Margin="4, 0, 4, 0"/>
                         <TextBox 
                             Width="100"
-                            Text="{Binding Quantity, UpdateSourceTrigger=PropertyChanged}"/>
+                            Text="{Binding AmountSubjects, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <Button 
                             Width="100"
@@ -119,19 +113,19 @@
                             <DataGridTextColumn 
                                     Header="Name"
                                     Width="*"
-                                    Binding="{Binding Path=Name}"/>
+                                    Binding="{Binding Path=SubjectType1.Name}"/>
                             <DataGridTextColumn 
                                     Header="Description"
                                     Width="*"
-                                    Binding="{Binding Path=Description}"/>
+                                    Binding="{Binding Path=SubjectType1.Description}"/>
                             <DataGridTextColumn 
                                     Header="Inv Number"
                                     Width="*"
                                     Binding="{Binding Path=InventoryNumber}"/>
                             <DataGridTextColumn 
-                                    Header="Quantity"
+                                    Header="Amount of subjects"
                                     Width="*"
-                                    Binding="{Binding Path=Quantity}"/>
+                                    Binding="{Binding Path=AmountSubjects}"/>
                         </DataGrid.Columns>
 
                     </DataGrid>
@@ -181,7 +175,7 @@
                         Grid.Row="1"
                         Height="25"
                         VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
+                        HorizontalAlignment="Left"
                         Orientation="Horizontal"
                         Margin="4">
 
@@ -190,7 +184,7 @@
                             Text="Description: "
                             Margin="4, 0, 4, 0"/>
                         <TextBox 
-                            Width="100"
+                            Width="85"
                             Text="{Binding DescriptionProcess, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <TextBlock 
@@ -198,7 +192,7 @@
                             Text="Subject Id: "
                             Margin="4, 0, 4, 0"/>
                         <TextBox 
-                            Width="100"
+                            Width="40"
                             Text="{Binding SubjectId, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <TextBlock 
@@ -206,7 +200,7 @@
                             Text="Start Date: "
                             Margin="4, 0, 4, 0"/>
                         <DatePicker 
-                            Width="100"
+                            Width="32"
                             SelectedDate="{Binding StartDate}"/>
 
                         <TextBlock 
@@ -214,11 +208,27 @@
                             Text="End Date: "
                             Margin="4, 0, 4, 0"/>
                         <DatePicker 
-                            Width="100"
+                            Width="32"
                             SelectedDate="{Binding EndDate}"/>
 
+                        <TextBlock 
+                            VerticalAlignment="Center"
+                            Text="Employees: "
+                            Margin="4, 0, 4, 0"/>
+                        <TextBox 
+                            Width="40"
+                            Text="{Binding UsedEmployeeNumber, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <TextBlock 
+                            VerticalAlignment="Center"
+                            Text="Department: "
+                            Margin="4, 0, 4, 0"/>
+                        <TextBox 
+                            Width="85"
+                            Text="{Binding Department, UpdateSourceTrigger=PropertyChanged}"/>
+
                         <Button 
-                            Width="100"
+                            Width="70"
                             Margin="4, 0, 4, 0"
                             Content="Add Process"
                             Command="{Binding AddProcess, UpdateSourceTrigger=PropertyChanged}"
@@ -258,6 +268,14 @@
                                     Width="*"
                                     Binding="{Binding Path=EndDate}"/>
                             <DataGridTextColumn 
+                                    Header="Employees"
+                                    Width="*"
+                                    Binding="{Binding Path=UsedEmployeeNumber}"/>
+                            <DataGridTextColumn 
+                                    Header="Department"
+                                    Width="*"
+                                    Binding="{Binding Path=Department}"/>
+                            <DataGridTextColumn 
                                     Header="Is completed"
                                     Width="*"
                                     Binding="{Binding Path=IsCompleted}"/>
@@ -265,6 +283,21 @@
 
                     </DataGrid>
                     
+                </Grid>
+                
+            </TabItem>
+
+            <TabItem
+                Header="Subject Types">
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.15*"/>
+                        <RowDefinition Height="0.10*"/>
+                        <RowDefinition Height="0.75*"/>
+                    </Grid.RowDefinitions>
+
                 </Grid>
                 
             </TabItem>

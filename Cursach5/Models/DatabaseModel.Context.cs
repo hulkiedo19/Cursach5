@@ -27,5 +27,6 @@ namespace Cursach5.Models
     
         public virtual DbSet<Process> Processes { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
+        public virtual DbSet<SubjectType> SubjectTypes { get; set; }
     }
 }

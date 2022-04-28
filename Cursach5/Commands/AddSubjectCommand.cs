@@ -34,7 +34,7 @@ namespace Cursach5.Commands
                 return;
             }
 
-            if(_viewModel.Name == null || _viewModel.Description == null || _viewModel.InvNumber == null || _viewModel.Quantity == null)
+            if(_viewModel.SubjectTypeId == null || _viewModel.InvNumber == null || _viewModel.AmountSubjects == null)
             {
                 MessageBox.Show("Please enter text to textboxes");
                 return;
@@ -45,6 +45,18 @@ namespace Cursach5.Commands
 
             using(var DbContext = new DatabaseEntities())
             {
+                var SubjectType = DbContext.SubjectTypes
+                    .Where(x => x.SubjectTypeId == subject.SubjectType)
+                    .FirstOrDefault();
+
+                if(SubjectType == default)
+                {
+                    MessageBox.Show("this type of subject doesn't exists, please try again");
+                    return;
+                }
+
+                subject.SubjectType1 = SubjectType;
+
                 DbContext.Subjects.Add(subject);
                 DbContext.SaveChanges();
 
@@ -57,10 +69,9 @@ namespace Cursach5.Commands
         {
             Subject subject = new Subject()
             {
-                Name = _viewModel.Name,
-                Description = _viewModel.Description,
+                SubjectType = Convert.ToInt32(_viewModel.SubjectTypeId),
                 InventoryNumber = _viewModel.InvNumber,
-                Quantity = Convert.ToInt32(_viewModel.Quantity)
+                AmountSubjects = Convert.ToInt32(_viewModel.AmountSubjects)
             };
 
             return subject;

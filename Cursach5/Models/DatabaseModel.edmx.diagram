@@ -4,10 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="85f62318fb0b4090bc29b8611acc9908" Name="Diagram1">
-        <EntityTypeShape EntityType="DatabaseModel.Process" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatabaseModel.Subject" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="DatabaseModel.FK__Processes__UsedS__36B12243" ManuallyRouted="false" />
+      <Diagram DiagramId="23897ae48e0e4a8b99dc6a1e48efad09" Name="Diagram1">
+        <EntityTypeShape EntityType="DatabaseModel.Process" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Subject" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.SubjectType" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="DatabaseModel.FK__Processes__UsedS__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK__Subjects__Subjec__267ABA7A" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

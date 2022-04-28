@@ -29,6 +29,12 @@ namespace Cursach5.Commands
                     .Where(s => s.Id == subjectId)
                     .Single();
 
+                if(subject.Processes.Count() > 0)
+                {
+                    MessageBox.Show("Please finish all processes before deleting subject");
+                    return;
+                }
+
                 DbContext.Subjects.Remove(subject);
                 DbContext.SaveChanges();
 
@@ -44,7 +50,9 @@ namespace Cursach5.Commands
         {
             using (var DbContext = new DatabaseEntities())
             {
-                _viewModel.Subjects = DbContext.Subjects.ToList();
+                _viewModel.Subjects = DbContext.Subjects
+                    .Include(nameof(Subject.SubjectType1))
+                    .ToList();
             }
         }
     }

@@ -34,7 +34,8 @@ namespace Cursach5.Commands
                 return;
             }
 
-            if(_viewModel.DescriptionProcess == null || _viewModel.SubjectId == null || _viewModel.StartDate == null || _viewModel.EndDate == null)
+            if(_viewModel.DescriptionProcess == null || _viewModel.SubjectId == null || _viewModel.StartDate == null || _viewModel.EndDate == null ||
+                _viewModel.UsedEmployeeNumber == null || _viewModel.Department == null)
             {
                 MessageBox.Show("Please enter text to textboxes");
                 return;
@@ -48,6 +49,16 @@ namespace Cursach5.Commands
 
             using (var DbContext = new DatabaseEntities())
             {
+                var subject = DbContext.Subjects
+                    .Where(t => t.Id == process.UsedSubject)
+                    .FirstOrDefault();
+
+                if (subject == default)
+                {
+                    MessageBox.Show("this subject doesn't exists, please try again");
+                    return;
+                }
+
                 DbContext.Processes.Add(process);
                 DbContext.SaveChanges();
 
@@ -59,10 +70,12 @@ namespace Cursach5.Commands
         private Process CreateProcess()
         {
             int subjectId;
+            int employeeNumber;
 
             try
             {
                 subjectId = Convert.ToInt32(_viewModel.SubjectId);
+                employeeNumber = Convert.ToInt32(_viewModel.UsedEmployeeNumber);
             } 
             catch (Exception ex)
             {
@@ -76,6 +89,8 @@ namespace Cursach5.Commands
                 UsedSubject = subjectId,
                 StartDate = Convert.ToDateTime(_viewModel.StartDate),
                 EndDate = Convert.ToDateTime(_viewModel.EndDate),
+                UsedEmployeeNumber = employeeNumber,
+                Department = _viewModel.Department,
                 IsCompleted = "не выполнено"
             };
 
