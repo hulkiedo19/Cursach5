@@ -66,9 +66,11 @@
     </ApplicationDefinition>
     <Compile Include="Commands\AddProcessCommand.cs" />
     <Compile Include="Commands\AddSubjectCommand.cs" />
+    <Compile Include="Commands\AddSubjectTypesCommand.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\DeleteProcessCommand.cs" />
     <Compile Include="Commands\DeleteSubjectCommand.cs" />
+    <Compile Include="Commands\DeleteSubjectTypesCommand.cs" />
     <Compile Include="Commands\MarkProcessCommand.cs" />
     <Compile Include="Commands\UpdateSubjectsCommand.cs" />
     <Compile Include="Models\DatabaseModel.Context.cs">

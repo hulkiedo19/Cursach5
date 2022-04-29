@@ -28,6 +28,12 @@ namespace Cursach5.ViewModels
         private List<Process> _processes;
         private object _selectedProcess;
 
+        private string _name;
+        private string _descriptionSubjectType;
+
+        private List<SubjectType> _subjectTypes;
+        private object _selectedSubjectType;
+
         public ICommand AddSubject => new AddSubjectCommand(this);
         public ICommand DeleteSubject => new DeleteSubjectCommand(this);
         public ICommand UpdateSubjects => new UpdateSubjectsCommand(this);
@@ -36,6 +42,8 @@ namespace Cursach5.ViewModels
         public ICommand DeleteProcess => new DeleteProcessCommand(this);
         public ICommand MarkProcess => new MarkProcessCommand(this);
 
+        public ICommand AddSubjectType => new AddSubjectTypesCommand(this);
+        public ICommand DeleteSubjectType => new DeleteSubjectTypesCommand(this);
 
         public MainWindowViewModel()
         {
@@ -46,6 +54,9 @@ namespace Cursach5.ViewModels
                     .ToList();
 
                 _processes = dbContext.Processes
+                    .ToList();
+
+                _subjectTypes = dbContext.SubjectTypes
                     .ToList();
             }
         }
@@ -128,6 +139,31 @@ namespace Cursach5.ViewModels
         {
             get => _department;
             set => Set(ref _department, value, nameof(Department));
+        }
+
+
+        public List<SubjectType> SubjectTypes
+        {
+            get => _subjectTypes;
+            set => Set(ref _subjectTypes, value, nameof(SubjectTypes));
+        }
+
+        public object SelectedSubjectType
+        {
+            get => _selectedSubjectType;
+            set => Set(ref _selectedSubjectType, value, nameof(SelectedSubjectType));
+        }
+
+        public string Name
+        {
+            get => _name;
+            set => Set(ref _name, value, nameof(Name));
+        }
+
+        public string DescriptionSubjectType
+        {
+            get => _descriptionSubjectType;
+            set => Set(ref _descriptionSubjectType, value, nameof(DescriptionSubjectType));
         }
     }
 }

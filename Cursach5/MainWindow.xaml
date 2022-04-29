@@ -16,7 +16,44 @@
     </Window.DataContext>
     
     <Grid>
-        <TabControl>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="0.9*"/>
+        </Grid.RowDefinitions>
+        
+        <Menu
+            Height="20"
+            VerticalAlignment="Top"
+            Grid.Row="0">
+
+            <MenuItem
+                Header="File">
+
+                <MenuItem 
+                    Header="New"/>
+                <MenuItem 
+                    Header="Open"/>
+                <MenuItem 
+                    Header="Update"/>
+                <MenuItem 
+                    Header="Exit"/>
+
+            </MenuItem>
+
+            <MenuItem
+                Header="Help">
+
+                <MenuItem 
+                    Header="Options"/>
+                <MenuItem 
+                    Header="About"/>
+
+            </MenuItem>
+            
+        </Menu>
+        
+        <TabControl
+            Grid.Row="1">
 
             <TabItem
                 Header="Subjects">
@@ -297,6 +334,85 @@
                         <RowDefinition Height="0.10*"/>
                         <RowDefinition Height="0.75*"/>
                     </Grid.RowDefinitions>
+
+                    <StackPanel
+                        Grid.Row="0"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Left"
+                        Margin="0, 5, 0, 5">
+
+                        <Button 
+                            Width="100"
+                            Margin="5, 0, 5, 0"
+                            Content="Delete process"
+                            Command="{Binding DeleteSubjectType, UpdateSourceTrigger=PropertyChanged}"
+                            CommandParameter="{Binding ElementName=TypesGrid, Path=Items}"/>
+
+                        <Button 
+                            Width="100"
+                            Margin="5, 0, 5, 0"
+                            Content="Exit"
+                            Click="Exit_Click"/>
+                        
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Row="1"
+                        Height="20"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Orientation="Horizontal"
+                        Margin="4">
+
+                        <TextBlock 
+                            Text="Name: "
+                            Margin="4, 0, 4, 0"/>
+                        <TextBox 
+                            Width="100"
+                            Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <TextBlock 
+                            Text="Description: "
+                            Margin="4, 0, 4, 0"/>
+                        <TextBox 
+                            Width="200"
+                            Text="{Binding DescriptionSubjectType, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <Button 
+                            Width="100"
+                            Margin="10, 0, 4, 0"
+                            Content="Add SubjectType"
+                            Command="{Binding AddSubjectType, UpdateSourceTrigger=PropertyChanged}"
+                            CommandParameter="{Binding ElementName=TypesGrid, Path=Items}"/>
+
+                    </StackPanel>
+
+                    <DataGrid
+                        Grid.Row="2"
+                        x:Name="TypesGrid"
+                        AutoGenerateColumns="False"
+                        ScrollViewer.CanContentScroll="True"
+                        ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                        ScrollViewer.VerticalScrollBarVisibility="Visible"
+                        ItemsSource="{Binding SubjectTypes, UpdateSourceTrigger=PropertyChanged}"
+                            SelectedItem="{Binding SelectedSubjectType, TargetNullValue={x:Static CollectionView.NewItemPlaceholder}}">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn 
+                                    Header="Id"
+                                    Width="*"
+                                    Binding="{Binding Path=SubjectTypeId}"/>
+                            <DataGridTextColumn 
+                                    Header="Name"
+                                    Width="*"
+                                    Binding="{Binding Path=Name}"/>
+                            <DataGridTextColumn 
+                                    Header="Description"
+                                    Width="*"
+                                    Binding="{Binding Path=Description}"/>
+                        </DataGrid.Columns>
+                        
+                    </DataGrid>
 
                 </Grid>
                 
