@@ -6,7 +6,7 @@
         xmlns:vm="clr-namespace:Cursach5.ViewModels"
         xmlns:local="clr-namespace:Cursach5"
         mc:Ignorable="d"
-        Title="MainWindow" 
+        Title="InventoryDB" 
         Height="450" 
         Width="850"
         ResizeMode="NoResize">
@@ -27,26 +27,26 @@
             Grid.Row="0">
 
             <MenuItem
-                Header="File">
+                Header="Файл">
 
                 <MenuItem 
-                    Header="New"/>
+                    Header="Создать"/>
                 <MenuItem 
-                    Header="Open"/>
+                    Header="Открыть"/>
                 <MenuItem 
-                    Header="Update"/>
+                    Header="Обновить"/>
                 <MenuItem 
-                    Header="Exit"/>
+                    Header="Выход"/>
 
             </MenuItem>
 
             <MenuItem
-                Header="Help">
+                Header="Помощь">
 
                 <MenuItem 
-                    Header="Options"/>
+                    Header="Настройки"/>
                 <MenuItem 
-                    Header="About"/>
+                    Header="О нас"/>
 
             </MenuItem>
             
@@ -56,7 +56,7 @@
             Grid.Row="1">
 
             <TabItem
-                Header="Subjects">
+                Header="Предметы">
 
                 <Grid>
 
@@ -75,21 +75,21 @@
                         <Button 
                             Width="100"
                             Margin="5, 0, 5, 0"
-                            Content="Delete subject"
+                            Content="Удалить предмет"
                             Command="{Binding DeleteSubject, UpdateSourceTrigger=PropertyChanged}"
                             CommandParameter="{Binding ElementName=SubjectGrid, Path=Items}"/>
 
                         <Button 
                             Width="100"
                             Margin="5, 0, 5, 0"
-                            Content="Update"
+                            Content="Обновить"
                             Command="{Binding UpdateSubjects, UpdateSourceTrigger=PropertyChanged}"
                             CommandParameter="{Binding ElementName=SubjectGrid, Path=Items}"/>
 
                         <Button 
                             Width="100"
                             Margin="5, 0, 5, 0"
-                            Content="Exit"
+                            Content="Выход"
                             Click="Exit_Click"/>
 
                     </StackPanel>
@@ -103,30 +103,30 @@
                         Margin="4">
 
                         <TextBlock 
-                            Text="Type Id: "
+                            Text="Идентификатор типа предмета: "
                             Margin="4, 0, 4, 0"/>
                         <TextBox 
                             Width="100"
                             Text="{Binding SubjectTypeId, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <TextBlock 
-                            Text="Inv Number: "
+                            Text="Инвентарный номер: "
                             Margin="4, 0, 4, 0"/>
                         <TextBox 
                             Width="100"
                             Text="{Binding InvNumber, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <TextBlock 
-                            Text="Quantity: "
+                            Text="Количество: "
                             Margin="4, 0, 4, 0"/>
                         <TextBox 
                             Width="100"
                             Text="{Binding AmountSubjects, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <Button 
-                            Width="100"
+                            Width="120"
                             Margin="4, 0, 4, 0"
-                            Content="Add Subject"
+                            Content="Добавить предмет"
                             Command="{Binding AddSubject, UpdateSourceTrigger=PropertyChanged}"
                             CommandParameter="{Binding ElementName=SubjectGrid, Path=Items}"/>
 
@@ -144,23 +144,23 @@
 
                         <DataGrid.Columns>
                             <DataGridTextColumn 
-                                    Header="Id"
+                                    Header="Идентификатор"
                                     Width="*"
                                     Binding="{Binding Path=Id}"/>
                             <DataGridTextColumn 
-                                    Header="Name"
+                                    Header="Название типа"
                                     Width="*"
                                     Binding="{Binding Path=SubjectType1.Name}"/>
                             <DataGridTextColumn 
-                                    Header="Description"
+                                    Header="Описание типа"
                                     Width="*"
                                     Binding="{Binding Path=SubjectType1.Description}"/>
                             <DataGridTextColumn 
-                                    Header="Inv Number"
+                                    Header="Инвентарный номер"
                                     Width="*"
                                     Binding="{Binding Path=InventoryNumber}"/>
                             <DataGridTextColumn 
-                                    Header="Amount of subjects"
+                                    Header="Количество"
                                     Width="*"
                                     Binding="{Binding Path=AmountSubjects}"/>
                         </DataGrid.Columns>
@@ -170,12 +170,12 @@
             </TabItem>
 
             <TabItem
-                Header="Processes">
+                Header="Процессы">
 
                 <Grid>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.15*"/>
+                        <RowDefinition Height="0.18*"/>
                         <RowDefinition Height="0.10*"/>
                         <RowDefinition Height="0.75*"/>
                     </Grid.RowDefinitions>
@@ -189,21 +189,31 @@
                         <Button 
                             Width="100"
                             Margin="5, 0, 5, 0"
-                            Content="Mark complete"
                             Command="{Binding MarkProcess, UpdateSourceTrigger=PropertyChanged}"
-                            CommandParameter="{Binding ElementName=ProcessGrid, Path=Items}"/>
-                        
-                        <Button 
-                            Width="100"
-                            Margin="5, 0, 5, 0"
-                            Content="Delete process"
-                            Command="{Binding DeleteProcess, UpdateSourceTrigger=PropertyChanged}"
-                            CommandParameter="{Binding ElementName=ProcessGrid, Path=Items}"/>
+                            CommandParameter="{Binding ElementName=ProcessGrid, Path=Items}">
+                            <TextBlock TextWrapping="Wrap" Text="Пометить выполненный процесс"/>
+                        </Button>
 
                         <Button 
                             Width="100"
                             Margin="5, 0, 5, 0"
-                            Content="Exit"
+                            Command="{Binding DeleteProcess, UpdateSourceTrigger=PropertyChanged}"
+                            CommandParameter="{Binding ElementName=ProcessGrid, Path=Items}">
+                            <TextBlock TextWrapping="Wrap" Text="Удалить процесс"/>
+                        </Button>
+
+                        <Button 
+                            Width="100"
+                            Margin="5, 0, 5, 0"
+                            Content="Обновить"
+                            />
+                        <!--Command="{Binding UpdateSubjects, UpdateSourceTrigger=PropertyChanged}"
+                            CommandParameter="{Binding ElementName=SubjectGrid, Path=Items}"-->
+
+                        <Button 
+                            Width="100"
+                            Margin="5, 0, 5, 0"
+                            Content="Выход"
                             Click="Exit_Click"/>
 
                     </StackPanel>
@@ -218,7 +228,7 @@
 
                         <TextBlock 
                             VerticalAlignment="Center"
-                            Text="Description: "
+                            Text="Описание: "
                             Margin="4, 0, 4, 0"/>
                         <TextBox 
                             Width="85"
@@ -226,7 +236,7 @@
 
                         <TextBlock 
                             VerticalAlignment="Center"
-                            Text="Subject Id: "
+                            Text="ИД предмета: "
                             Margin="4, 0, 4, 0"/>
                         <TextBox 
                             Width="40"
@@ -234,7 +244,7 @@
 
                         <TextBlock 
                             VerticalAlignment="Center"
-                            Text="Start Date: "
+                            Text="Начало: "
                             Margin="4, 0, 4, 0"/>
                         <DatePicker 
                             Width="32"
@@ -242,7 +252,7 @@
 
                         <TextBlock 
                             VerticalAlignment="Center"
-                            Text="End Date: "
+                            Text="Конец: "
                             Margin="4, 0, 4, 0"/>
                         <DatePicker 
                             Width="32"
@@ -250,7 +260,7 @@
 
                         <TextBlock 
                             VerticalAlignment="Center"
-                            Text="Employees: "
+                            Text="Рабочие: "
                             Margin="4, 0, 4, 0"/>
                         <TextBox 
                             Width="40"
@@ -258,16 +268,16 @@
 
                         <TextBlock 
                             VerticalAlignment="Center"
-                            Text="Department: "
+                            Text="Отдел: "
                             Margin="4, 0, 4, 0"/>
                         <TextBox 
                             Width="85"
                             Text="{Binding Department, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <Button 
-                            Width="70"
+                            Width="110"
                             Margin="4, 0, 4, 0"
-                            Content="Add Process"
+                            Content="Добавить процесс"
                             Command="{Binding AddProcess, UpdateSourceTrigger=PropertyChanged}"
                             CommandParameter="{Binding ElementName=ProcessGrid, Path=Items}"/>
 
@@ -285,35 +295,35 @@
 
                         <DataGrid.Columns>
                             <DataGridTextColumn 
-                                    Header="Id"
+                                    Header="Идентификатор"
                                     Width="*"
                                     Binding="{Binding Path=Id}"/>
                             <DataGridTextColumn 
-                                    Header="Description"
+                                    Header="Описание"
                                     Width="*"
                                     Binding="{Binding Path=Description}"/>
                             <DataGridTextColumn 
-                                    Header="Subject"
+                                    Header="ПРедмет"
                                     Width="*"
                                     Binding="{Binding Path=UsedSubject}"/>
                             <DataGridTextColumn 
-                                    Header="Start Date"
+                                    Header="Начало"
                                     Width="*"
                                     Binding="{Binding Path=StartDate}"/>
                             <DataGridTextColumn 
-                                    Header="End Date"
+                                    Header="Конец"
                                     Width="*"
                                     Binding="{Binding Path=EndDate}"/>
                             <DataGridTextColumn 
-                                    Header="Employees"
+                                    Header="Рабочие"
                                     Width="*"
                                     Binding="{Binding Path=UsedEmployeeNumber}"/>
                             <DataGridTextColumn 
-                                    Header="Department"
+                                    Header="Отдел"
                                     Width="*"
                                     Binding="{Binding Path=Department}"/>
                             <DataGridTextColumn 
-                                    Header="Is completed"
+                                    Header="Статус"
                                     Width="*"
                                     Binding="{Binding Path=IsCompleted}"/>
                         </DataGrid.Columns>
@@ -325,7 +335,7 @@
             </TabItem>
 
             <TabItem
-                Header="Subject Types">
+                Header="Типы предметов">
 
                 <Grid>
 
@@ -344,14 +354,22 @@
                         <Button 
                             Width="100"
                             Margin="5, 0, 5, 0"
-                            Content="Delete process"
+                            Content="Удалить тип"
                             Command="{Binding DeleteSubjectType, UpdateSourceTrigger=PropertyChanged}"
                             CommandParameter="{Binding ElementName=TypesGrid, Path=Items}"/>
 
                         <Button 
                             Width="100"
                             Margin="5, 0, 5, 0"
-                            Content="Exit"
+                            Content="Обновить"
+                            />
+                        <!--Command="{Binding UpdateSubjects, UpdateSourceTrigger=PropertyChanged}"
+                            CommandParameter="{Binding ElementName=SubjectGrid, Path=Items}"-->
+                        
+                        <Button 
+                            Width="100"
+                            Margin="5, 0, 5, 0"
+                            Content="Выход"
                             Click="Exit_Click"/>
                         
                     </StackPanel>
@@ -365,14 +383,14 @@
                         Margin="4">
 
                         <TextBlock 
-                            Text="Name: "
+                            Text="Название: "
                             Margin="4, 0, 4, 0"/>
                         <TextBox 
                             Width="100"
                             Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <TextBlock 
-                            Text="Description: "
+                            Text="Описание: "
                             Margin="4, 0, 4, 0"/>
                         <TextBox 
                             Width="200"
@@ -381,7 +399,7 @@
                         <Button 
                             Width="100"
                             Margin="10, 0, 4, 0"
-                            Content="Add SubjectType"
+                            Content="Добавить тип"
                             Command="{Binding AddSubjectType, UpdateSourceTrigger=PropertyChanged}"
                             CommandParameter="{Binding ElementName=TypesGrid, Path=Items}"/>
 
@@ -399,15 +417,15 @@
 
                         <DataGrid.Columns>
                             <DataGridTextColumn 
-                                    Header="Id"
+                                    Header="Идентификатор"
                                     Width="*"
                                     Binding="{Binding Path=SubjectTypeId}"/>
                             <DataGridTextColumn 
-                                    Header="Name"
+                                    Header="Название"
                                     Width="*"
                                     Binding="{Binding Path=Name}"/>
                             <DataGridTextColumn 
-                                    Header="Description"
+                                    Header="Описание"
                                     Width="*"
                                     Binding="{Binding Path=Description}"/>
                         </DataGrid.Columns>
