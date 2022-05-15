@@ -41,9 +41,11 @@ namespace Cursach5.ViewModels
         public ICommand AddProcess => new AddProcessCommand(this);
         public ICommand DeleteProcess => new DeleteProcessCommand(this);
         public ICommand MarkProcess => new MarkProcessCommand(this);
+        public ICommand UpdateProcess => new UpdateProcessCommand(this);
 
         public ICommand AddSubjectType => new AddSubjectTypesCommand(this);
         public ICommand DeleteSubjectType => new DeleteSubjectTypesCommand(this);
+        public ICommand UpdateSubjectType => new UpdateSubjectTypesCommand(this);
 
         public MainWindowViewModel()
         {

@@ -98,7 +98,7 @@
                         Grid.Row="1"
                         Height="20"
                         VerticalAlignment="Center"
-                        HorizontalAlignment="Left"
+                        HorizontalAlignment="Center"
                         Orientation="Horizontal"
                         Margin="4">
 
@@ -170,6 +170,108 @@
             </TabItem>
 
             <TabItem
+                Header="Типы предметов">
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.15*"/>
+                        <RowDefinition Height="0.10*"/>
+                        <RowDefinition Height="0.75*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel
+                        Grid.Row="0"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Left"
+                        Margin="0, 5, 0, 5">
+
+                        <Button 
+                            Width="100"
+                            Margin="5, 0, 5, 0"
+                            Content="Удалить тип"
+                            Command="{Binding DeleteSubjectType, UpdateSourceTrigger=PropertyChanged}"
+                            CommandParameter="{Binding ElementName=TypesGrid, Path=Items}"/>
+
+                        <Button 
+                            Width="100"
+                            Margin="5, 0, 5, 0"
+                            Content="Обновить"
+                            Command="{Binding UpdateSubjectType, UpdateSourceTrigger=PropertyChanged}"
+                            CommandParameter="{Binding ElementName=TypesGrid, Path=Items}"
+                            />
+
+                        <Button 
+                            Width="100"
+                            Margin="5, 0, 5, 0"
+                            Content="Выход"
+                            Click="Exit_Click"/>
+
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Row="1"
+                        Height="20"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal"
+                        Margin="4">
+
+                        <TextBlock 
+                            Text="Название: "
+                            Margin="4, 0, 4, 0"/>
+                        <TextBox 
+                            Width="200"
+                            Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <TextBlock 
+                            Text="Описание: "
+                            Margin="4, 0, 4, 0"/>
+                        <TextBox 
+                            Width="250"
+                            Text="{Binding DescriptionSubjectType, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <Button 
+                            Width="100"
+                            Margin="10, 0, 4, 0"
+                            Content="Добавить тип"
+                            Command="{Binding AddSubjectType, UpdateSourceTrigger=PropertyChanged}"
+                            CommandParameter="{Binding ElementName=TypesGrid, Path=Items}"/>
+
+                    </StackPanel>
+
+                    <DataGrid
+                        Grid.Row="2"
+                        x:Name="TypesGrid"
+                        AutoGenerateColumns="False"
+                        ScrollViewer.CanContentScroll="True"
+                        ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                        ScrollViewer.VerticalScrollBarVisibility="Visible"
+                        ItemsSource="{Binding SubjectTypes, UpdateSourceTrigger=PropertyChanged}"
+                            SelectedItem="{Binding SelectedSubjectType, TargetNullValue={x:Static CollectionView.NewItemPlaceholder}}">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn 
+                                    Header="Идентификатор"
+                                    Width="130"
+                                    Binding="{Binding Path=SubjectTypeId}"/>
+                            <DataGridTextColumn 
+                                    Header="Название"
+                                    Width="200"
+                                    Binding="{Binding Path=Name}"/>
+                            <DataGridTextColumn 
+                                    Header="Описание"
+                                    Width="*"
+                                    Binding="{Binding Path=Description}"/>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+
+                </Grid>
+
+            </TabItem>
+
+            <TabItem
                 Header="Процессы">
 
                 <Grid>
@@ -187,15 +289,15 @@
                         Margin="0, 5, 0, 5">
 
                         <Button 
-                            Width="100"
+                            Width="120"
                             Margin="5, 0, 5, 0"
                             Command="{Binding MarkProcess, UpdateSourceTrigger=PropertyChanged}"
                             CommandParameter="{Binding ElementName=ProcessGrid, Path=Items}">
-                            <TextBlock TextWrapping="Wrap" Text="Пометить выполненный процесс"/>
+                            <TextBlock TextWrapping="Wrap" Text="Изменить статус процесса"/>
                         </Button>
 
                         <Button 
-                            Width="100"
+                            Width="120"
                             Margin="5, 0, 5, 0"
                             Command="{Binding DeleteProcess, UpdateSourceTrigger=PropertyChanged}"
                             CommandParameter="{Binding ElementName=ProcessGrid, Path=Items}">
@@ -206,9 +308,9 @@
                             Width="100"
                             Margin="5, 0, 5, 0"
                             Content="Обновить"
+                            Command="{Binding UpdateProcess, UpdateSourceTrigger=PropertyChanged}"
+                            CommandParameter="{Binding ElementName=ProcessGrid, Path=Items}"
                             />
-                        <!--Command="{Binding UpdateSubjects, UpdateSourceTrigger=PropertyChanged}"
-                            CommandParameter="{Binding ElementName=SubjectGrid, Path=Items}"-->
 
                         <Button 
                             Width="100"
@@ -222,7 +324,7 @@
                         Grid.Row="1"
                         Height="25"
                         VerticalAlignment="Center"
-                        HorizontalAlignment="Left"
+                        HorizontalAlignment="Center"
                         Orientation="Horizontal"
                         Margin="4">
 
@@ -231,7 +333,7 @@
                             Text="Описание: "
                             Margin="4, 0, 4, 0"/>
                         <TextBox 
-                            Width="85"
+                            Width="150"
                             Text="{Binding DescriptionProcess, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <TextBlock 
@@ -239,7 +341,7 @@
                             Text="ИД предмета: "
                             Margin="4, 0, 4, 0"/>
                         <TextBox 
-                            Width="40"
+                            Width="35"
                             Text="{Binding SubjectId, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <TextBlock 
@@ -263,7 +365,7 @@
                             Text="Рабочие: "
                             Margin="4, 0, 4, 0"/>
                         <TextBox 
-                            Width="40"
+                            Width="35"
                             Text="{Binding UsedEmployeeNumber, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <TextBlock 
@@ -271,7 +373,7 @@
                             Text="Отдел: "
                             Margin="4, 0, 4, 0"/>
                         <TextBox 
-                            Width="85"
+                            Width="35"
                             Text="{Binding Department, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <Button 
@@ -303,7 +405,7 @@
                                     Width="*"
                                     Binding="{Binding Path=Description}"/>
                             <DataGridTextColumn 
-                                    Header="ПРедмет"
+                                    Header="Предмет"
                                     Width="*"
                                     Binding="{Binding Path=UsedSubject}"/>
                             <DataGridTextColumn 
@@ -329,111 +431,9 @@
                         </DataGrid.Columns>
 
                     </DataGrid>
-                    
-                </Grid>
-                
-            </TabItem>
-
-            <TabItem
-                Header="Типы предметов">
-
-                <Grid>
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.15*"/>
-                        <RowDefinition Height="0.10*"/>
-                        <RowDefinition Height="0.75*"/>
-                    </Grid.RowDefinitions>
-
-                    <StackPanel
-                        Grid.Row="0"
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Left"
-                        Margin="0, 5, 0, 5">
-
-                        <Button 
-                            Width="100"
-                            Margin="5, 0, 5, 0"
-                            Content="Удалить тип"
-                            Command="{Binding DeleteSubjectType, UpdateSourceTrigger=PropertyChanged}"
-                            CommandParameter="{Binding ElementName=TypesGrid, Path=Items}"/>
-
-                        <Button 
-                            Width="100"
-                            Margin="5, 0, 5, 0"
-                            Content="Обновить"
-                            />
-                        <!--Command="{Binding UpdateSubjects, UpdateSourceTrigger=PropertyChanged}"
-                            CommandParameter="{Binding ElementName=SubjectGrid, Path=Items}"-->
-                        
-                        <Button 
-                            Width="100"
-                            Margin="5, 0, 5, 0"
-                            Content="Выход"
-                            Click="Exit_Click"/>
-                        
-                    </StackPanel>
-
-                    <StackPanel
-                        Grid.Row="1"
-                        Height="20"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Left"
-                        Orientation="Horizontal"
-                        Margin="4">
-
-                        <TextBlock 
-                            Text="Название: "
-                            Margin="4, 0, 4, 0"/>
-                        <TextBox 
-                            Width="100"
-                            Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
-
-                        <TextBlock 
-                            Text="Описание: "
-                            Margin="4, 0, 4, 0"/>
-                        <TextBox 
-                            Width="200"
-                            Text="{Binding DescriptionSubjectType, UpdateSourceTrigger=PropertyChanged}"/>
-
-                        <Button 
-                            Width="100"
-                            Margin="10, 0, 4, 0"
-                            Content="Добавить тип"
-                            Command="{Binding AddSubjectType, UpdateSourceTrigger=PropertyChanged}"
-                            CommandParameter="{Binding ElementName=TypesGrid, Path=Items}"/>
-
-                    </StackPanel>
-
-                    <DataGrid
-                        Grid.Row="2"
-                        x:Name="TypesGrid"
-                        AutoGenerateColumns="False"
-                        ScrollViewer.CanContentScroll="True"
-                        ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                        ScrollViewer.VerticalScrollBarVisibility="Visible"
-                        ItemsSource="{Binding SubjectTypes, UpdateSourceTrigger=PropertyChanged}"
-                            SelectedItem="{Binding SelectedSubjectType, TargetNullValue={x:Static CollectionView.NewItemPlaceholder}}">
-
-                        <DataGrid.Columns>
-                            <DataGridTextColumn 
-                                    Header="Идентификатор"
-                                    Width="*"
-                                    Binding="{Binding Path=SubjectTypeId}"/>
-                            <DataGridTextColumn 
-                                    Header="Название"
-                                    Width="*"
-                                    Binding="{Binding Path=Name}"/>
-                            <DataGridTextColumn 
-                                    Header="Описание"
-                                    Width="*"
-                                    Binding="{Binding Path=Description}"/>
-                        </DataGrid.Columns>
-                        
-                    </DataGrid>
 
                 </Grid>
-                
+
             </TabItem>
 
         </TabControl>

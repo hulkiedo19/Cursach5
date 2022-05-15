@@ -72,7 +72,9 @@
     <Compile Include="Commands\DeleteSubjectCommand.cs" />
     <Compile Include="Commands\DeleteSubjectTypesCommand.cs" />
     <Compile Include="Commands\MarkProcessCommand.cs" />
+    <Compile Include="Commands\UpdateProcessCommand.cs" />
     <Compile Include="Commands\UpdateSubjectsCommand.cs" />
+    <Compile Include="Commands\UpdateSubjectTypesCommand.cs" />
     <Compile Include="Models\DatabaseModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
